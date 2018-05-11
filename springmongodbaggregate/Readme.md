@@ -1,0 +1,1 @@
+Exemplo retirado do site: https://xpadro.com/2016/04/data-aggregation-with-spring-data-mongodb-and-spring-boot.html
