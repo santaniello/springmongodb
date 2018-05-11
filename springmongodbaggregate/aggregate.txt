@@ -1,0 +1,29 @@
+db.product.aggregate([
+   {
+      "$match":{
+        "warehouse" : "London",
+        "createdDate": {$gte: ISODate("2018-01-01T00:00:00.0Z"), $lt: ISODate("2018-02-01T00:00:00.0Z")}
+      }
+   },
+   {
+      "$project":{
+         "product":{
+            "id":"$_id",
+            "warehouse":"$warehouse",
+            "price":"$price",
+            "data":"$createdDate"
+         }
+      }
+   },
+   {
+      "$group":{
+         "_id":"$product.id",
+         "product":{"$last":"$product"}
+      }
+   },
+   {
+      "$sort": {
+         "product.price" : 1
+      }
+   }
+])
